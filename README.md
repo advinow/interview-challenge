@@ -24,6 +24,8 @@ Below are all the tasks/expectations required to complete this challenge. These 
 ## Ordered List
 1. **Create a virtual environment and install the requirements - "requirements\requirements.txt"** Created virtual environment in `env/`, installed initial requirements in `requirements/requirements.txt`. Although it is convention to exclude such content from commits using an ignore file, I will be including this here as proof I did in fact create a virtual environment.
 
+2. **Create data models - example with sqlalchemy in "app\models.py"** Created new models in `app/models.py` using SQLAlchemy. These include "business", "symptom", and a M2M association lookup table that resolves the Many-to-Many relationship I can understand from `app/data/business_symptom_data.csv`. Defined primary keys to be "Business ID" and "Symptom Code" for business and symptom tables respectively, assuming that uniqueness holds according to sample data.
+
 
 As a note, FastAPI, uvicorn, sqlalchemy, and alembic are not required to be used and may be changed if desired. 
 Any of the existing files or variables can be and may need to be changed or updated, please be prepared to explain changes on the follow-up call.

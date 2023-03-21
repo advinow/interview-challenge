@@ -1,16 +1,30 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
 
 Base = declarative_base()
 
 
-class Example(Base):
+association_table = Table(
+    "business_symptom_m2m",
+    Base.metadata,
+    Column("business_id", ForeignKey("business.id"), primary_key=True),
+    Column("symptom_code", ForeignKey("symptom.code"), primary_key=True),
+)
+
+
+class Business(Base):
+
     __tablename__ = "business"
 
-    id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-    example_column = Column(String(100), nullable=False)
-    created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.datetime.utcnow)
-    updated_at = Column(DateTime(timezone=True), nullable=False, default=datetime.datetime.utcnow)
-    created_by = Column(String(100), nullable=True)
-    updated_by = Column(String(100), nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, nullable=False)
+
+
+class Symptom(Base):
+
+    __tablename__ = "symptom"
+
+    code = Column(String(255), primary_key=True)
+    diagnostic = Column(Boolean, nullable=False)
+
