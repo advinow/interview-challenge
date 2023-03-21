@@ -8,6 +8,7 @@ Below are all the tasks/expectations required to complete this challenge. These 
 
 **Please organize these tasks and update the ReadMe based on the order you complete them!**
 
+## Initial List
 - Create data models - example with sqlalchemy in "app\models.py"
 - Create an endpoint that returns business and symptom data
   - Endpoint should take two optional parameters - business_id & diagnostic
@@ -19,6 +20,10 @@ Below are all the tasks/expectations required to complete this challenge. These 
 - Create an endpoint for importing a CSV file into the database
   - The only requirement is the endpoint requires a CSV file. If needed, other parameters can be used.
 - Create a virtual environment and install the requirements - "requirements\requirements.txt"
+
+## Ordered List
+1. **Create a virtual environment and install the requirements - "requirements\requirements.txt"** Created virtual environment in `env/`, installed initial requirements in `requirements/requirements.txt`. Although it is convention to exclude such content from commits using an ignore file, I will be including this here as proof I did in fact create a virtual environment.
+
 
 As a note, FastAPI, uvicorn, sqlalchemy, and alembic are not required to be used and may be changed if desired. 
 Any of the existing files or variables can be and may need to be changed or updated, please be prepared to explain changes on the follow-up call.
