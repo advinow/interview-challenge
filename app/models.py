@@ -1,4 +1,12 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy import (
+    Column, 
+    Table, 
+    Integer, 
+    String, 
+    DateTime, 
+    Boolean,
+    ForeignKey
+)
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
 
