@@ -24,7 +24,13 @@ Below are all the tasks/expectations required to complete this challenge. These 
 ## Ordered List
 1. **Create a virtual environment and install the requirements - "requirements\requirements.txt"** Created virtual environment in `env/`, installed initial requirements in `requirements/requirements.txt`. Although it is convention to exclude such content from commits using an ignore file, I will be including this here as proof I did in fact create a virtual environment.
 
-2. **Create data models - example with sqlalchemy in "app\models.py"** Created new models in `app/models.py` using SQLAlchemy. These include "business", "symptom", and a M2M association lookup table that resolves the Many-to-Many relationship I can understand from `app/data/business_symptom_data.csv`. Defined primary keys to be "Business ID" and "Symptom Code" for business and symptom tables respectively, assuming that uniqueness holds according to sample data.
+3. **Design a database mock up based on the provided data - "app\data\business_symptom_data.csv"** Created an ERD that conveys my intentions for database design. Three tables are captured. One for business data, one for symptom data, and another acting as an association table for the suspected M2M relationship between the two.
+
+![No image found!](erd.png "ERD")
+
+3. **Create data models - example with sqlalchemy in "app\models.py"** Created new models in `app/models.py` using SQLAlchemy. These include "business", "symptom", and a M2M association lookup table that resolves the Many-to-Many relationship I can understand from `app/data/business_symptom_data.csv`. Defined primary keys to be "Business ID" and "Symptom Code" for business and symptom tables respectively, assuming that uniqueness holds according to sample data.
+
+
 
 
 As a note, FastAPI, uvicorn, sqlalchemy, and alembic are not required to be used and may be changed if desired. 
