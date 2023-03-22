@@ -30,6 +30,10 @@ Below are all the tasks/expectations required to complete this challenge. These 
 
 3. **Create data models - example with sqlalchemy in "app\models.py"** Created new models in `app/models.py` using SQLAlchemy. These include "business", "symptom", and a M2M association lookup table that resolves the Many-to-Many relationship I can understand from `app/data/business_symptom_data.csv`. Defined primary keys to be "Business ID" and "Symptom Code" for business and symptom tables respectively, assuming that uniqueness holds according to sample data.
 
+4. **Generate migration script and run migration to create database tables - alembic files provided** Generated new Alembic migration `alembic/versions/2023_03_20_2304-8f0e1fbfa2b2-init.py`. Ran migration against PostgreSQL database container. Also set up Docker Compose YAML file here for UPnP setup. Created Dockerfile for a light FastAPI ready image as well to run API. Passed credentials into containers, setup entrypoints, then ran migration and viewed contents of database to make sure changes were present with `psql` CLI tool.
+
+
+
 
 
 
