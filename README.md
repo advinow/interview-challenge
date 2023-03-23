@@ -35,7 +35,7 @@ Below are all the tasks/expectations required to complete this challenge. These 
 5. **Create an endpoint for importing a CSV file into the database** Created POST endpoint "/csv" with UploadFile handle to handle CSV imports to database. Created Pydantic models for data validation, particularly for various forms of the boolean field for diagnostic data, which Pydantic can handle quite well. Validated and deduped data as much as possible, likely poor on space complexity. Made efforts to reduce attempted writes with data already present by querying for primary keys before hand for Business, Symptom, using filter for iterable through deduped data, then writing where the filter iterable guarantees new value. M2M lookup table also populated accordingly.
 
 
-
+6. **Create an endpoint that returns business and symptom data** Created GET endpoint "/resources" accepting the requested parameters. Crafts queries by filter chaining for Business ID, but for Diagnostic across M2M, eager loads and filters by boolean column accordingly. Setup additional Pydantic models here with ORM Mode turned on, Business and Resource respectively.
 
 As a note, FastAPI, uvicorn, sqlalchemy, and alembic are not required to be used and may be changed if desired. 
 Any of the existing files or variables can be and may need to be changed or updated, please be prepared to explain changes on the follow-up call.

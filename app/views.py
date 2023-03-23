@@ -1,15 +1,15 @@
 import csv
 from io import StringIO
-from typing import Annotated
+from typing import List
 
-from fastapi import APIRouter, File, UploadFile, status
+from fastapi import APIRouter, Depends, File, UploadFile, status
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 import psycopg2
 
 from models import Business, Symptom, business_symptom_m2m
-from sessions import session_scope
-from sqlalchemy import insert
+from sessions import session_scope, get_db, Session
+from sqlalchemy import insert, orm
 from sqlalchemy.exc import IntegrityError
 
 
@@ -133,4 +133,49 @@ async def import_csv(file: UploadFile = File(...)):
         content={"result": "SUCCESS"}
     )
 
+
+class SymptomResource(BaseModel):
+    code: str
+    name: str
+    diagnostic: bool
+
+    class Config:
+        orm_mode = True
+
+class BusinessResource(BaseModel):
+    id: int
+    name: str
+    symptoms: List[SymptomResource]
+    
+    class Config:
+        orm_mode = True
+
+
+@router.get("/resources", response_model=list[BusinessResource])
+def get_resources(
+    bid: int | None = None, 
+    diagnostic: bool | None = None, 
+    db: Session = Depends(get_db)
+) -> list[BusinessResource]:
+
+    if diagnostic is not None:
+        query = (
+            db.query(Business) \
+            .join(Symptom, Business.symptoms)
+            .options(orm.contains_eager(Business.symptoms))
+            .filter(Symptom.diagnostic == diagnostic)
+        )
+    
+    else:
+        query = (
+            db.query(Business) \
+            .join(Symptom, Business.symptoms)
+        )
+
+    if bid:
+        query = query.filter(Business.id == bid)
+    
+    res = query.all()
+
+    return res
 

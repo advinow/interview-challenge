@@ -5,9 +5,10 @@ from sqlalchemy import (
     String, 
     DateTime, 
     Boolean,
-    ForeignKey
+    ForeignKey,
 )
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 import datetime
 
 Base = declarative_base()
@@ -27,6 +28,12 @@ class Business(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+
+    symptoms = relationship(
+        "Symptom",
+        secondary=business_symptom_m2m,
+        backref="business_symptoms"
+    )
 
 
 class Symptom(Base):
