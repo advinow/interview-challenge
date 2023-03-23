@@ -32,7 +32,7 @@ Below are all the tasks/expectations required to complete this challenge. These 
 
 4. **Generate migration script and run migration to create database tables - alembic files provided** Generated new Alembic migration `alembic/versions/2023_03_20_2304-8f0e1fbfa2b2-init.py`. Ran migration against PostgreSQL database container. Also set up Docker Compose YAML file here for UPnP setup. Created Dockerfile for a light FastAPI ready image as well to run API. Passed credentials into containers, setup entrypoints, then ran migration and viewed contents of database to make sure changes were present with `psql` CLI tool.
 
-
+5. **Create an endpoint for importing a CSV file into the database** Created POST endpoint "/csv" with UploadFile handle to handle CSV imports to database. Created Pydantic models for data validation, particularly for various forms of the boolean field for diagnostic data, which Pydantic can handle quite well. Validated and deduped data as much as possible, likely poor on space complexity. Made efforts to reduce attempted writes with data already present by querying for primary keys before hand for Business, Symptom, using filter for iterable through deduped data, then writing where the filter iterable guarantees new value.
 
 
 
